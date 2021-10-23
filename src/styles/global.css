@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.page-container{
+    transition: 1.1s;
+    transform: translateX(0);
+}
+
+.page-container.modal-shown{
+    transform: translateX(-25%);
+}
+
+.modal-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    padding: 25px;
+    width: 100%;
+    height: 100%;
+    transform: translateX(100%);
+    transition: 1s;
+    z-index: 10;
+}
+
+.modal-container.active{
+    transform: translateX(0);
+}
+
+
+.modal-content{
+    transition: 1.1s;
+    transform: translateX(0);
+}
+
+.modal-content.queue{
+    transform: translateX(-25%);
+}
+
