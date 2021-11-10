@@ -10,7 +10,11 @@ module.exports = {
     defaultLocale: "en-US",
   },
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Inter','sans-serif']
+      }
+    },
   },
   variants: {
     extend: {

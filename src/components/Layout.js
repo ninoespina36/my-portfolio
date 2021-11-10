@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import _ from 'underscore';
+// import _ from 'underscore';
 
 import Header from "./Header";
 // import { useStaticQuery, graphql } from "gatsby";
@@ -16,7 +16,7 @@ export default function Layout({ children }){
   //   }
   // `);
 
-  const [ active, setActive ] = useState(false);
+  const [ active ] = useState(false);
 
   return (
     <div>

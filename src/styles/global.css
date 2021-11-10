@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+    .nav-item{
+        @apply h-full mx-3 text-sm flex items-center;
+    }
+}
+
+@font-face {
+    font-family: 'SFPro-Regular';
+    src: local('SFPro-Regular'), url(../fonts/SFPro-Regular.ttf) format('ttf');
+}
+
+html,
+body{
+    font-family: 'SFPro-Regular', sans-serif;
+}
+
 .page-container{
     transition: 1.1s;
     transform: translateX(0);
