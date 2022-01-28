@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .primary-navbar__nav-item{
+        @apply h-full text-sm flex items-center text-gray-800 hover:text-gray-500 cursor-pointer transition-all duration-200 dark:text-gray-200;
+    }
+    .max-container{
+        @apply 3xl:max-w-7xl max-w-6xl mx-auto px-5;
+    }
+    .footer-item{
+        @apply hover:text-ninz-500 dark:text-gray-200;
+    }
+}
+
+html,
+body{
+    font-family: 'Inter', sans-serif;
+}
+
+img{
+    image-rendering: auto;
+    image-rendering: crisp-edges;
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+}
+
+.primary-navbar{
+    background-color: rgba(255, 255, 255, 0.616);
+    backdrop-filter: saturate(180%) blur(10px);
+}
+
+.dark .primary-navbar{
+    background-color: rgba(29, 29, 31, 0.7);
+}
+
+.page-container{
+    transition: 1.1s;
+    transform: translateX(0);
+}
+
+.text-gradient{
+    outline: none;
+    background: linear-gradient(135deg, #34D399, #3B82F6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    transition: 0.3s ease-in-out;
+}
+
+.text-gradient.hovered{
+    outline: none;
+    background: linear-gradient(135deg, #34d3b1 0%, #2a97c9 25%, #19cbe3 50%, #2a97c9 75%, #34d3b1 100%);
+    background-size: 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    animation: animate 30s linear infinite;
+}
+
+@keyframes animate {
+    to{
+        background-position: 500%;
+    }
+}
+
+.intro-grid-img{
+    border-radius: 40px;
+    /* box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; */
+}
+
+.intro-grid-img img{
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.rounded-corner{
+    border-radius: 40px;
+}
+
+.portfolio-box{
+    min-height: 300px;
+}
