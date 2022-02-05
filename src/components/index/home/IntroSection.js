@@ -21,7 +21,7 @@ export default function IntroSection(){
         <div className="h-screen relative w-full xl:block flex items-center">
           <Timeline
             target={
-              <div className="absolute w-full h-full flex items-center justify-center">
+              <div className="absolute w-full h-full bg-gray-100 flex items-center justify-center">
                 <h2 className="absolute text-5xl">Hi, Welcome</h2>
               </div>
             }
@@ -35,7 +35,7 @@ export default function IntroSection(){
           />
           <Tween duration={0.5}/>
           <Tween
-            to={{ opacity: 0, y: '-5%' }}
+            to={{ opacity: 0, y: '-5%', display: 'none' }}
             duration={0.5}
           />
         </Timeline>
