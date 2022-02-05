@@ -3,10 +3,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   important: true,
-  // purge: [
-  //   "./src/components/**/*.{js,jsx}",
-  //   "./public/index.html",
-  // ],
+  purge: {
+    content: ["./pages/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
+  },
   darkMode: "class",
   i18n: {
     locales: ["en-US"],
