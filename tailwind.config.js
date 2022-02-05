@@ -3,9 +3,10 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   important: true,
-  purge: {
-    content: ["./pages/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
-  },
+  purge: [
+    "./src/components/**/*.{js,jsx}",
+    "./public/index.html",
+  ],
   darkMode: "class",
   i18n: {
     locales: ["en-US"],
