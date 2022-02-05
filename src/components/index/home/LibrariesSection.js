@@ -30,9 +30,9 @@ export default function LibrariesSection(){
                             totalProgress={isScreenGreater(_XL) ? progress : 1} 
                             target={
                                 <Fragment>
-                                    <div>
+                                    <div className="lg:h-40 w-40">
                                         <Glare>
-                                            <div className="lg:h-40 w-40 intro-grid-img bg-gray-50 border dark:border-gray-500">
+                                            <div className="intro-grid-img bg-gray-50 border dark:border-gray-500">
                                                 <StaticImage 
                                                     src="../../../images/tailwind.png" 
                                                     alt="Tailwind.CSS" 
@@ -41,9 +41,9 @@ export default function LibrariesSection(){
                                             </div>
                                         </Glare>
                                     </div>
-                                    <div>
+                                    <div className="lg:h-40 w-40">
                                         <Glare>
-                                            <div className="lg:h-40 w-40 intro-grid-img bg-gradient-to-b from-purple-500 to-purple-600">
+                                            <div className="intro-grid-img bg-gradient-to-b from-purple-500 to-purple-600">
                                                 <StaticImage 
                                                     src="../../../images/bootstrap.png" 
                                                     alt="Bootstrap" 
@@ -52,9 +52,9 @@ export default function LibrariesSection(){
                                             </div>
                                         </Glare>
                                     </div>
-                                    <div>
+                                    <div className="lg:h-40 w-40">
                                         <Glare>
-                                            <div className="lg:h-40 w-40 intro-grid-img bg-gradient-to-b from-gray-700 to-gray-800">
+                                            <div className="intro-grid-img bg-gradient-to-b from-gray-700 to-gray-800">
                                                 <StaticImage 
                                                     src="../../../images/react.png" 
                                                     alt="React.JS" 
@@ -63,9 +63,9 @@ export default function LibrariesSection(){
                                             </div>
                                         </Glare>
                                     </div>
-                                    <div>
+                                    <div className="lg:h-40 w-40">
                                         <Glare>
-                                            <div className="lg:h-40 w-40 intro-grid-img bg-gradient-to-br from-pink-300 to-pink-400 border dark:border-gray-500">
+                                            <div className="intro-grid-img bg-gradient-to-br from-pink-300 to-pink-400 border dark:border-gray-500">
                                                 <StaticImage 
                                                     src="../../../images/sass.png" 
                                                     alt="SASS" 
@@ -74,15 +74,15 @@ export default function LibrariesSection(){
                                             </div>
                                         </Glare>
                                     </div>
-                                    <div>
+                                    <div className="lg:h-40 w-40">
                                         <Glare>
-                                            <div className="lg:h-40 w-40 intro-grid-img bg-gray-50 border dark:border-gray-500">
-                                                <StaticImage 
-                                                    src="../../../images/redux.png" 
-                                                    alt="Redux" 
-                                                    placeholder="blurred"
-                                                />
-                                            </div>
+                                        <div className="intro-grid-img bg-gray-50 border dark:border-gray-500">
+                                            <StaticImage 
+                                                src="../../../images/redux.png" 
+                                                alt="Redux" 
+                                                placeholder="blurred"
+                                            />
+                                        </div>
                                         </Glare>
                                     </div>
                                 </Fragment>
