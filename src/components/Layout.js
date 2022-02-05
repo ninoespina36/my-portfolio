@@ -5,6 +5,8 @@ import Header from "./Header";
 import Footer from "./Footer";
 import InfoHeader from "./InfoHeader";
 import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import { useStaticQuery, graphql } from "gatsby";
 
 export default function Layout({ children }){
@@ -38,6 +40,8 @@ export default function Layout({ children }){
   return (
     <div className={isDarkMode ? 'dark' : ''}>
       <div className="bg-gray-100 dark:bg-gray-800">
+        <ToastContainer />
+
         <Helmet>
           <meta charSet="utf-8" />
           <title>Niño Espina</title>

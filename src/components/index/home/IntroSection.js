@@ -1,12 +1,20 @@
 import React, { Fragment } from "react";
 import { Tween, Timeline } from 'react-gsap';
+import { Link } from 'react-scroll';
 import { StaticImage } from "gatsby-plugin-image";
 import { BsThreeDots, BsEnvelope } from "react-icons/bs";
-import { RiMessengerLine } from "react-icons/ri";
 import { FaTelegramPlane,FaSkype } from "react-icons/fa";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { BiPhoneCall } from 'react-icons/bi';
+import { toast } from 'react-toastify';
+import Glare from "../../tilt/Glare";
 
 export default function IntroSection(){
+
+    const copyToClipboard = (text, type) =>{
+      navigator.clipboard.writeText(text);
+      toast.info(`${type} copied!`);
+    }
 
     return (
       <section>
@@ -46,12 +54,19 @@ export default function IntroSection(){
               </h1>
               <h5 className="sm:text-xl text-base font-medium subtitle text-gray-400 mt-10">I love building websites, systems and apps with React JS <div className="sm:block hidden w-full h-1">&nbsp;</div> and other powerful technology along with the innovative CSS libraries.</h5>
               <div className="flex items-center gap-x-6 mt-10 text-gray-400 xl:justify-start justify-center">
-                <a href="" className="hover:text-gray-600"><BsEnvelope size={25}/></a>
-                <a href="" className="hover:text-gray-600"><FaSkype size={25}/></a>
-                <a href="" className="hover:text-gray-600"><FaTelegramPlane size={25}/></a>
-                <a href="" className="hover:text-gray-600"><RiMessengerLine size={25}/></a>
+                <button type="button" aria-label="Contact" onClick={()=>copyToClipboard('ninoespina36@gmail.com', 'Email')} className="hover:text-gray-600"><BsEnvelope size={25}/></button>
+                <button type="button" aria-label="Contact" onClick={()=>copyToClipboard('live:.cid.99dace99bae26cc1', 'Skype Id')} className="hover:text-gray-600"><FaSkype size={25}/></button>
+                <button type="button" aria-label="Contact" onClick={()=>copyToClipboard('@ninoespina', 'Telegram Id')} className="hover:text-gray-600"><FaTelegramPlane size={25}/></button>
+                <button type="button" aria-label="Contact" onClick={()=>copyToClipboard('+63 909278 6294', 'Mobile Number')} className="hover:text-gray-600"><BiPhoneCall size={25}/></button>
               </div>
-              <button className="btn btn-outline btn-primary mt-10">Learn More <MdOutlineArrowForwardIos className="ml-2"/></button>
+              <Link 
+                  to="about" 
+                  smooth={true} 
+                  spy={true} 
+                  duration={800}
+              >
+                <div className="btn btn-outline btn-primary mt-10">Learn More <MdOutlineArrowForwardIos className="ml-2"/></div>
+              </Link>
             </div>
           </Tween>
           <div className="intro-text-img xl:absolute 3xl:right-0 right-5 3xl:-top-0 -top-36 transform xl:translate-y-3/4 flex flex-wrap 3xl:scale-100 scale-75 xl:w-112 w-full xl:h-112 h-full">
@@ -59,32 +74,38 @@ export default function IntroSection(){
               target={
                 <Fragment>
                   <div className="xl:w-1/2 w-1/4 p-4">
-                    <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
-                      <StaticImage 
-                        src="../../../images/react.png" 
-                        alt="React.JS" 
-                        placeholder="blurred" 
-                        className="react animate-spin-slow"
-                      />
-                    </div>
+                    <Glare>
+                      <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
+                        <StaticImage 
+                          src="../../../images/react.png" 
+                          alt="React.JS" 
+                          placeholder="blurred" 
+                          className="react animate-spin-slow"
+                        />
+                      </div>
+                    </Glare>
                   </div>
                   <div className="xl:w-1/2 w-1/4 p-4">
-                    <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
-                      <StaticImage 
-                        src="../../../images/tailwind.png" 
-                        alt="Tailwind.CSS" 
-                        placeholder="blurred"
-                      />
-                    </div>
+                    <Glare>
+                      <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
+                        <StaticImage 
+                          src="../../../images/tailwind.png" 
+                          alt="Tailwind.CSS" 
+                          placeholder="blurred"
+                        />
+                      </div>
+                    </Glare>
                   </div>
                   <div className="xl:w-1/2 w-1/4 p-4">
-                    <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
-                      <StaticImage 
-                        src="../../../images/node.png" 
-                        alt="Node.JS" 
-                        placeholder="blurred"
-                      />
-                    </div>
+                    <Glare>
+                      <div className="h-full w-full intro-grid-img bg-gray-50 dark:bg-gray-700 dark:border-gray-700 border">
+                        <StaticImage 
+                          src="../../../images/node.png" 
+                          alt="Node.JS" 
+                          placeholder="blurred"
+                        />
+                      </div>
+                    </Glare>
                   </div>
                   <div className="xl:w-1/2 w-1/4 p-4 flex items-center justify-center">
                     <BsThreeDots size={60} className="text-gray-400"/>

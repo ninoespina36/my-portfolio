@@ -36,9 +36,9 @@ export default function Header(){
                         <h5 className="font-bold">Niño Espina</h5>
                     </Link>
                     
-                    <ul className="sm:flex hidden items-center justify-center h-full gap-x-12">
+                    <ul className="flex items-center justify-center h-full gap-x-12">
                         {menu.map((item, index)=>(
-                            <li className="h-full" key={index}>
+                            <li className="h-full sm:block hidden" key={index}>
                                 <Link 
                                     to={item.path} 
                                     className="primary-navbar__nav-item" 

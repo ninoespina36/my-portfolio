@@ -1,19 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useRef  } from "react";
 import { BsEnvelope } from "react-icons/bs";
-import { RiMessengerLine } from "react-icons/ri";
 import { FaTelegramPlane,FaSkype } from "react-icons/fa";
+import { BiPhoneCall } from 'react-icons/bi';
 import { Tween, SplitWords } from 'react-gsap';
 import { Controller, Scene } from 'react-scrollmagic';
+import emailjs from '@emailjs/browser';
+import { toast } from 'react-toastify';
 
 import FadeIn from "../animations/FadeIn";
 
 export default function ContactSection(){
 
   const [ isSubmitting, setSubmitting ] = useState(false);
+  const contactForm = useRef();
 
   const submitMessage = e =>{
     setSubmitting(true);
     e.preventDefault();
+
+    emailjs.sendForm('service_7ejr58f', 'template_06jvm1t', contactForm.current, 'user_paCtMuFY0C5aeMyBHH3hW')
+    .then(() => {
+        contactForm.current.reset();
+        toast.info(`Inquiry successfully sent!`);
+        setSubmitting(false);
+    }, (error) => {
+        console.log(error.text);
+    });
   }
 
   return (
@@ -27,19 +39,45 @@ export default function ContactSection(){
             <div className="max-container  text-gray-800">
               <div className="grid grid-cols-12">
                   <div className="md:col-span-6 col-span-12 lg:pr-10 pr-5">
-                      <form onSubmit={submitMessage}>
+                      <form ref={contactForm} onSubmit={submitMessage}>
                         <div className="form-control mb-2">
-                          <input type="text" placeholder="Email Address" className="input input-bordered dark:border-gray-700 bg-transparent focus:bg-white" />
+                          <input 
+                            required 
+                            type="text" 
+                            placeholder="Name" 
+                            className="input input-bordered dark:border-gray-700 bg-transparent focus:bg-white" 
+                            name="user_name"
+                          />
                         </div>
                         <div className="form-control mb-2">
-                          <select className="select select-bordered dark:border-gray-700 w-full bg-transparent focus:bg-white text-gray-400 focus:text-gray-600 font-normal" defaultValue="placeholder">
-                            <option disabled="disabled" value="placeholder">Choose your inquiry</option> 
+                          <input 
+                            required 
+                            type="text" 
+                            placeholder="Email Address" 
+                            className="input input-bordered dark:border-gray-700 bg-transparent focus:bg-white" 
+                            name="user_email"
+                          />
+                        </div>
+                        <div className="form-control mb-2">
+                          <select 
+                            required 
+                            className="select select-bordered dark:border-gray-700 w-full bg-transparent focus:bg-white text-gray-400 focus:text-gray-600 font-normal" 
+                            defaultValue="Nothing"
+                            name="inquiry"
+                          >
+                            <option disabled="disabled" value="Nothing">Choose your inquiry</option> 
                             <option value="Project Request">Project Request</option> 
                             <option value="Others">Others</option> 
                           </select>
                         </div>
                         <div className="form-control mb-2">
-                          <textarea className="textarea textarea-bordered dark:border-gray-700 pt-2 bg-transparent focus:bg-white" rows="5" placeholder="Message"></textarea>
+                          <textarea 
+                            required 
+                            className="textarea textarea-bordered dark:border-gray-700 pt-2 bg-transparent focus:bg-white" 
+                            rows="5" 
+                            placeholder="Message"
+                            name="message"
+                          ></textarea>
                         </div>
                         <button type="submit" className="btn btn-primary mt-2 w-40" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Submit Message'}</button>
                       </form>
@@ -66,27 +104,27 @@ export default function ContactSection(){
                         <h5 className="text-xl font-medium subtitle text-gray-400 mb-5">If you like my work, don't hesitate to contact me via this information below or send it through the input form.</h5>
                       </FadeIn>
                       <FadeIn>
-                      <div className="flex items-center gap-x-4 mb-3 text-gray-700 dark:text-gray-200">
+                      <div className="flex items-center gap-x-4 mb-4 text-gray-700 dark:text-gray-200">
                         <BsEnvelope size={20}/>
-                        <span className="ml-1">ninoespina36@gmail.com</span>
+                        <a href="mailto:ninoespina36@gmail.com" className="ml-1">ninoespina36@gmail.com</a>
                       </div>
                       </FadeIn>
                       <FadeIn>
-                      <div className="flex items-center gap-x-4 mb-3 text-gray-700 dark:text-gray-200">
+                      <div className="flex items-center gap-x-4 mb-4 text-gray-700 dark:text-gray-200">
                         <FaSkype size={23} />
                         <span>live:.cid.99dace99bae26cc1</span>
                       </div>
                       </FadeIn>
                       <FadeIn>
-                      <div className="flex items-center gap-x-4 mb-3 text-gray-700 dark:text-gray-200">
+                      <div className="flex items-center gap-x-4 mb-4 text-gray-700 dark:text-gray-200">
                         <FaTelegramPlane size={23} />
                         <span>@ninoespina</span>
                       </div>
                       </FadeIn>
                       <FadeIn>
-                      <div className="flex items-center gap-x-4 mb-3 text-gray-700 dark:text-gray-200">
-                        <RiMessengerLine size={23} />
-                        <span>nc.espina</span>
+                      <div className="flex items-center gap-x-4 mb-4 text-gray-700 dark:text-gray-200">
+                        <BiPhoneCall size={23} />
+                        <span>+63 909278 6294</span>
                       </div>
                       </FadeIn>
                   </div>

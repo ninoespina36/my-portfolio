@@ -53,7 +53,7 @@ export default function Footer(){
             </div>
 
             <div className="flex items-center justify-between text-xs border-t border-gray-300 dark:border-gray-800 pt-10 mt-10 dark:text-gray-200">
-                <span>Copyright &copy; 2022 Niño Espina. </span>
+                <span>Copyright &copy; {new Date().getFullYear()} Niño Espina. </span>
                 <span>All rights reserved.</span>
             </div>
 

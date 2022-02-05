@@ -85,3 +85,7 @@ img{
 .portfolio-box{
     min-height: 300px;
 }
+
+.divider path{
+    fill: #e5e7eb;
+}
