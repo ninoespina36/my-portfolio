@@ -1,9 +1,12 @@
 module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
   important: true,
-  purge: {
-    content: ["./pages/**/*.tsx", "./components/**/*.tsx"],
-    // These options are passed through directly to PurgeCSS
-  },
+  // purge: [
+  //   "./src/components/**/*.{js,jsx}",
+  //   "./public/index.html",
+  // ],
   darkMode: "class",
   i18n: {
     locales: ["en-US"],
