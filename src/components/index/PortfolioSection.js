@@ -1,12 +1,142 @@
-import React from "react";
-import { StaticImage } from "gatsby-plugin-image";
+import React, { useEffect, useState } from "react";
+import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
+import Modal from 'react-modal';
+import { graphql, useStaticQuery } from "gatsby";
+import _ from 'underscore';
 
 import FadeIn from "../animations/FadeIn";
 import Glare from '../tilt/Glare';
 
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.10)",
+    backdropFilter: 'blur(20px)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 60
+  },
+  content: {
+    zIndex: 61,
+    position: 'static',
+    borderRadius: 40,
+    backgroundColor: "rgba(255,255,255,0.8)",
+  },
+};
+
+const WorkColumn  = ({ gridClassNames, lightModeClasses, image_node, showModal }) =>{
+  return (
+    <div className={`${gridClassNames} md:col-span-6 col-span-12 pb-6`}>
+      <FadeIn>
+        <div onClick={showModal}>
+          <Glare>
+            <div className={`${lightModeClasses} p-20 rounded-corner bg-gradient-to-br border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden`}>
+              <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
+                <GatsbyImage 
+                  image={getImage(image_node)}
+                  alt="Portfolio" 
+                  className="rounded-lg shadow-lg"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
+          </Glare>
+        </div>
+      </FadeIn>
+    </div>
+  )
+}
+
 export default function PortfolioSection(){
+
+  const [ isModalOpen, setModalOpen ] = useState(false);
+  const [ works, setWorks ] = useState([]);
+  const [ activeWork, setActiveWork ] = useState({});
+
+  const showModal = (work) =>{
+    setModalOpen(true);
+    setActiveWork(work);
+  }
+  
+  const query = useStaticQuery(graphql`
+    query {
+      allMarkdownRemark {
+        edges {
+          node {
+            frontmatter {
+              works {
+                image {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+                gridClassNames
+                lightModeClasses
+                name
+                screens {
+                  mobile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                  web {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  useEffect(()=>{
+    let isMounted = true;
+    if(isMounted){
+      setWorks(query?.allMarkdownRemark?.edges[0]?.node?.frontmatter?.works.map(item=>{
+        return {
+          image_node: item.image,
+          ...item
+        }
+      }))
+    }
+    return ()=> isMounted = false;
+  }, [ query?.allMarkdownRemark?.edges ]);
+
   return (
     <div className="min-h-screen xl:py-28 py-16 bg-white dark:bg-gray-700" id="portfolio">
+
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={()=>setModalOpen(false)}
+        style={customStyles}
+        closeTimeoutMS={300}
+      >
+        <div>
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll work__screen">
+              {!_.isEmpty(activeWork) && (
+                <GatsbyImage 
+                  image={getImage(activeWork?.screens?.web[0])}
+                  alt="Screen" 
+                  placeholder="blurred"
+                  className="w-full block"
+                />
+              )}
+            </div>
+            <StaticImage 
+              src="../../images/computer-screen.png" 
+              alt="Screen" 
+              placeholder="blurred"
+              className="w-3/4 mx-auto block"
+             />
+          </div>
+        </div>
+      </Modal>
+
       <div className="max-container  text-gray-800">
         <div className="grid grid-cols-12">
             <div className="lg:col-span-8 col-span-12 lg:pr-3 pb-6">
@@ -26,253 +156,13 @@ export default function PortfolioSection(){
                 </div>
               </FadeIn>
             </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 lg:pl-3 pb-6 lg:pr-0 md:pr-3">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-gray-600 to-gray-700 border dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/faagency.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6 col-span-12 lg:pr-3 pb-6 md:pl-3 lg:pl-0">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-blue-50  to-blue-100 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/aventis.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-5 md:col-span-6 col-span-12 lg:px-3 md:pr-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-pink-50 to-yellow-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/metro.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 md:pl-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-purple-100 to-blue-100 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/bq.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 md:pr-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-gray-50 to-blue-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/core1.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-5 md:col-span-6 col-span-12 lg:px-3 md:pl-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-red-100 to-gray-100 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/tour.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6 col-span-12 lg:pl-3 lg:pr-0 md:pr-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-green-900 to-gray-700 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/wedding.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 lg:pr-3 lg:pl-0 md:pl-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-yellow-100 to-purple-200 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/debut.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 lg:px-3 md:pr-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-green-100 to-yellow-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/cleanairattics.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 md:pl-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-gray-100 to-green-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/portfolio.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-4 md:col-span-6 col-span-12 md:pr-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-gray-50 to-blue-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/core2.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-3 md:col-span-6 col-span-12 lg:px-3 md:pl-3 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner  bg-gradient-to-br from-blue-100 to-yellow-100 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                        src="../../images/works/affiliatesaas.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
-            <div className="lg:col-span-5 md:col-span-6 col-span-12 lg:pl-3 md:pr-3 lg:pr-0 pb-6">
-              <FadeIn>
-                <div>
-                  <Glare>
-                    <div className="p-20 rounded-corner bg-gradient-to-br from-red-50 to-blue-50 border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden">
-                      <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
-                        <StaticImage 
-                          src="../../images/works/chasdei.png" 
-                          alt="Portfolio" 
-                          placeholder="blurred"
-                          objectFit="cover"
-                          className="rounded-lg shadow-lg"
-                        />
-                      </div>
-                    </div>
-                  </Glare>
-                </div>
-              </FadeIn>
-            </div>
+            {works.map((item, index)=>(
+              <WorkColumn 
+                key={index}
+                showModal={()=>showModal(item)}
+                {...item}
+              />
+            ))}
         </div>
       </div>
     </div>

@@ -89,3 +89,66 @@ img{
 .divider path{
     fill: #e5e7eb;
 }
+
+.ReactModal__Overlay{
+    animation: modalFadeIn 0.3s ease-in-out;
+}
+
+.ReactModal__Content{
+    max-width: 72rem;
+    transition: transform 0.6s;
+    transition-timing-function: cubic-bezier(0.03, 0.98, 0.52, 0.99);
+    transform: scale3d(0.7,0.7,0.7);
+    transform-origin: top right;
+}
+
+.ReactModal__Content--after-open{
+    transform: scale3d(1,1,1);
+}
+
+.ReactModal__Content--before-close{
+    transform: scale3d(0.7,0.7,0.7);
+    transform-origin: center center;
+}
+
+.ReactModal__Overlay--before-close{
+    animation: modalFadeOut 0.3s ease-in-out;
+}
+
+
+@keyframes modalFadeIn {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes modalFadeOut {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+
+.work__screen{
+    width: 68%;
+    height: 69%;
+    top: 5%;
+}
+
+.work__screen::-webkit-scrollbar {
+    width: 5px;
+}
+
+.work__screen::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.work__screen::-webkit-scrollbar-thumb {
+    background: #888; 
+}  

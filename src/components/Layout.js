@@ -1,27 +1,18 @@
 import React, { useEffect } from "react";
 import { Helmet } from "react-helmet";
+import { useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import Modal from 'react-modal';
 
 import Header from "./Header";
 import Footer from "./Footer";
 import InfoHeader from "./InfoHeader";
-import { useSelector } from 'react-redux';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { useStaticQuery, graphql } from "gatsby";
 
 export default function Layout({ children }){
 
-  // const { site } = useStaticQuery(graphql`
-  //   query SiteTitleQuery {
-  //     site {
-  //       siteMetadata {
-  //         title
-  //       }
-  //     }
-  //   }
-  // `);
-
   const { isDarkMode } = useSelector(state => state.util);
+  Modal.setAppElement('#___gatsby');
 
   useEffect(()=>{
     const body = document.querySelector('body');
