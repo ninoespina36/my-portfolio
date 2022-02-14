@@ -25,12 +25,12 @@ export default function IntroSection(){
     }, [])
 
     return (
-      <section className={`${loaded ? '' : 'hidden'}`}>
+      <section  className={`${loaded ? '' : 'opacity-0'}`}>
         <div className="h-screen relative w-full xl:block flex items-center">
           <Timeline
             target={
-              <div className="absolute w-full h-full flex items-center justify-center">
-                <h2 className="absolute text-5xl">Hi, Welcome</h2>
+              <div className="absolute w-full h-full flex items-center justify-center z-10">
+                <h2 className="text-5xl">Hi, Welcome</h2>
               </div>
             }
           >

@@ -1,28 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
-import Modal from 'react-modal';
 import { graphql, useStaticQuery } from "gatsby";
+import { useSelector } from "react-redux";
+import { ImMobile } from "react-icons/im";
+import { FiMonitor } from "react-icons/fi";
+import Modal from 'react-modal';
 import _ from 'underscore';
 
 import FadeIn from "../animations/FadeIn";
 import Glare from '../tilt/Glare';
-
-const customStyles = {
-  overlay: {
-    backgroundColor: "rgba(0, 0, 0, 0.10)",
-    backdropFilter: 'blur(20px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 60
-  },
-  content: {
-    zIndex: 61,
-    position: 'static',
-    borderRadius: 40,
-    backgroundColor: "rgba(255,255,255,0.8)",
-  },
-};
 
 const WorkColumn  = ({ gridClassNames, lightModeClasses, image_node, showModal }) =>{
   return (
@@ -50,13 +36,40 @@ const WorkColumn  = ({ gridClassNames, lightModeClasses, image_node, showModal }
 export default function PortfolioSection(){
 
   const [ isModalOpen, setModalOpen ] = useState(false);
+  const [ isMobile, setMobile ] = useState(false);
   const [ works, setWorks ] = useState([]);
   const [ activeWork, setActiveWork ] = useState({});
+  const { isDarkMode } = useSelector(state => state.util);
+  const mobileScreen = useRef(null);
+  const desktopScreen = useRef(null);
 
   const showModal = (work) =>{
     setModalOpen(true);
     setActiveWork(work);
   }
+
+  const toggleScreen = e =>{
+    e.preventDefault();
+    setMobile(!isMobile);
+  }
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.10)",
+      backdropFilter: 'blur(20px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 60
+    },
+    content: {
+      zIndex: 61,
+      position: 'static',
+      borderRadius: 40,
+      backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255,255,255,0.7)',
+      border: 'none'
+    },
+  };
   
   const query = useStaticQuery(graphql`
     query {
@@ -73,6 +86,8 @@ export default function PortfolioSection(){
                 gridClassNames
                 lightModeClasses
                 name
+                description
+                link
                 screens {
                   mobile {
                     childImageSharp {
@@ -106,33 +121,72 @@ export default function PortfolioSection(){
     return ()=> isMounted = false;
   }, [ query?.allMarkdownRemark?.edges ]);
 
+  useEffect(()=>{
+    let isMounted = true;
+    if(isMounted){
+      if(!!mobileScreen.current) mobileScreen.current.scrollTop = 0; 
+      if(!!desktopScreen.current) desktopScreen.current.scrollTop = 0;
+    }
+    return ()=> isMounted = false;
+  }, [ isMobile ])
+
   return (
     <div className="min-h-screen xl:py-28 py-16 bg-white dark:bg-gray-700" id="portfolio">
 
       <Modal
         isOpen={isModalOpen}
         onRequestClose={()=>setModalOpen(false)}
+        onAfterClose={()=>setMobile(false)}
         style={customStyles}
         closeTimeoutMS={300}
       >
         <div>
-          <div className="relative">
-            <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll work__screen">
-              {!_.isEmpty(activeWork) && (
-                <GatsbyImage 
-                  image={getImage(activeWork?.screens?.web[0])}
+          {isMobile ? (
+            <div className="relative">
+              <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll mobile_work__screen" ref={mobileScreen}>
+                {!_.isEmpty(activeWork) && (
+                  <GatsbyImage 
+                    image={getImage(activeWork?.screens?.mobile[0])}
+                    alt="Screen" 
+                    placeholder="blurred"
+                    className="w-full block"
+                  />
+                )}
+              </div>
+                <StaticImage 
+                  src="../../images/mobile-screen.png" 
                   alt="Screen" 
                   placeholder="blurred"
-                  className="w-full block"
+                  className="w-3/4 mx-auto block"
                 />
-              )}
             </div>
-            <StaticImage 
-              src="../../images/computer-screen.png" 
-              alt="Screen" 
-              placeholder="blurred"
-              className="w-3/4 mx-auto block"
-             />
+          ) : (
+            <div className="relative">
+              <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll web_work__screen" ref={desktopScreen}>
+                {!_.isEmpty(activeWork) && (
+                  <GatsbyImage 
+                    image={getImage(activeWork?.screens?.web[0])}
+                    alt="Screen" 
+                    placeholder="blurred"
+                    className="w-full block"
+                  />
+                )}
+              </div>
+              <StaticImage 
+                src="../../images/computer-screen.png" 
+                alt="Screen" 
+                placeholder="blurred"
+                className="w-3/4 mx-auto block"
+              />
+            </div>
+          )}
+          <div className="flex items-center justify-center gap-x-5 mt-5">
+            <button 
+              onClick={toggleScreen}
+              className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+            >
+              {isMobile ? <FiMonitor size={25}/> : <ImMobile size={25}/>}
+            </button>
           </div>
         </div>
       </Modal>
