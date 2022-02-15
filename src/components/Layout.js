@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
@@ -12,6 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Layout({ children }){
 
   const { isDarkMode } = useSelector(state => state.util);
+  const [ loaded, setLoaded ] = useState(false);
+
   Modal.setAppElement('#___gatsby');
 
   useEffect(()=>{
@@ -20,6 +22,7 @@ export default function Layout({ children }){
    
     if(isMounted){
       window.scrollTo(0, 0);
+      setLoaded(true);
       if(window.pageYOffset === 0){
         body.classList.add('overflow-hidden');
       }
@@ -30,6 +33,9 @@ export default function Layout({ children }){
 
   return (
     <div className={isDarkMode ? 'dark' : ''}>
+
+      <div className={`fixed top-0 left-0 w-screen h-screen bg-gray-100 ${loaded ? 'hidden' : 'block'}`}></div>
+
       <div className="bg-gray-100 dark:bg-gray-800">
         <ToastContainer />
 

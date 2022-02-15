@@ -4,6 +4,7 @@ import { graphql, useStaticQuery } from "gatsby";
 import { useSelector } from "react-redux";
 import { ImMobile } from "react-icons/im";
 import { FiMonitor } from "react-icons/fi";
+import { BsInfoLg } from "react-icons/bs";
 import Modal from 'react-modal';
 import _ from 'underscore';
 
@@ -34,42 +35,6 @@ const WorkColumn  = ({ gridClassNames, lightModeClasses, image_node, showModal }
 }
 
 export default function PortfolioSection(){
-
-  const [ isModalOpen, setModalOpen ] = useState(false);
-  const [ isMobile, setMobile ] = useState(false);
-  const [ works, setWorks ] = useState([]);
-  const [ activeWork, setActiveWork ] = useState({});
-  const { isDarkMode } = useSelector(state => state.util);
-  const mobileScreen = useRef(null);
-  const desktopScreen = useRef(null);
-
-  const showModal = (work) =>{
-    setModalOpen(true);
-    setActiveWork(work);
-  }
-
-  const toggleScreen = e =>{
-    e.preventDefault();
-    setMobile(!isMobile);
-  }
-
-  const customStyles = {
-    overlay: {
-      backgroundColor: "rgba(0, 0, 0, 0.10)",
-      backdropFilter: 'blur(20px)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      zIndex: 60
-    },
-    content: {
-      zIndex: 61,
-      position: 'static',
-      borderRadius: 40,
-      backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255,255,255,0.7)',
-      border: 'none'
-    },
-  };
   
   const query = useStaticQuery(graphql`
     query {
@@ -88,6 +53,8 @@ export default function PortfolioSection(){
                 name
                 description
                 link
+                technologyUsed
+                isMobile
                 screens {
                   mobile {
                     childImageSharp {
@@ -107,6 +74,55 @@ export default function PortfolioSection(){
       }
     }
   `);
+
+  const [ isModalOpen, setModalOpen ] = useState(false);
+  const [ isMobile, setMobile ] = useState(false);
+  const [ isDescription, setDescription ] = useState(false);
+  const [ works, setWorks ] = useState([]);
+  const [ activeWork, setActiveWork ] = useState({});
+  const { isDarkMode } = useSelector(state => state.util);
+  const mobileScreen = useRef(null);
+  const desktopScreen = useRef(null);
+
+  const showModal = (work) =>{
+    setModalOpen(true);
+    setActiveWork(work);
+  }
+
+  const toggleScreen = e =>{
+    e.preventDefault();
+    setMobile(!isMobile);
+    setDescription(false);
+  }
+
+  const toggleDescription = e =>{
+    e.preventDefault();
+    setMobile(true);
+    setDescription(!isDescription);
+  }
+
+  const onAfterClose = () =>{
+    setMobile(false);
+    setDescription(false);
+  }
+
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.10)",
+      backdropFilter: 'blur(20px)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      zIndex: 60
+    },
+    content: {
+      zIndex: 61,
+      position: 'static',
+      borderRadius: 40,
+      backgroundColor: isDarkMode ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255,255,255,0.7)',
+      border: 'none'
+    },
+  };
 
   useEffect(()=>{
     let isMounted = true;
@@ -128,7 +144,7 @@ export default function PortfolioSection(){
       if(!!desktopScreen.current) desktopScreen.current.scrollTop = 0;
     }
     return ()=> isMounted = false;
-  }, [ isMobile ])
+  }, [ isMobile ]);
 
   return (
     <div className="min-h-screen xl:py-28 py-16 bg-white dark:bg-gray-700" id="portfolio">
@@ -136,12 +152,12 @@ export default function PortfolioSection(){
       <Modal
         isOpen={isModalOpen}
         onRequestClose={()=>setModalOpen(false)}
-        onAfterClose={()=>setMobile(false)}
+        onAfterClose={()=>onAfterClose()}
         style={customStyles}
         closeTimeoutMS={300}
       >
         <div>
-          {isMobile ? (
+          {(isMobile && !isDescription) ? (
             <div className="relative">
               <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll mobile_work__screen" ref={mobileScreen}>
                 {!_.isEmpty(activeWork) && (
@@ -159,6 +175,17 @@ export default function PortfolioSection(){
                   placeholder="blurred"
                   className="w-3/4 mx-auto block"
                 />
+            </div>
+          ) : isDescription ? (
+            <div className={`p-10 ${isDarkMode ? 'text-gray-200' : ''}`}>
+              <h1 className="text-3xl mb-5">{activeWork?.name}</h1>
+              <hr/>
+              <h5 className="font-medium mb-2 pt-5">Description</h5>
+              <i>{activeWork?.description}</i>
+              <h5 className="font-medium mb-2 pt-5">Technology Used</h5>
+              {activeWork?.technologyUsed.map((item, index)=>(
+                <i key={index}>{item} {activeWork?.technologyUsed.length !== index + 1 && ', '}</i>
+              ))}
             </div>
           ) : (
             <div className="relative">
@@ -187,6 +214,14 @@ export default function PortfolioSection(){
             >
               {isMobile ? <FiMonitor size={25}/> : <ImMobile size={25}/>}
             </button>
+            {!isDescription && (
+              <button 
+                onClick={toggleDescription}
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+              >
+                <BsInfoLg size={25}/> 
+              </button>
+            )}
           </div>
         </div>
       </Modal>

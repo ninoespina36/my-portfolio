@@ -3,7 +3,7 @@ name: My Works,
 works: [
     {
         name: FA Agency,
-        description: FA Agency is a company that focuses on Artist Management and Artist Bookings in the dance music industry. Based in Southeast Asia.,
+        description: "FA Agency is a company that focuses on Artist Management and Artist Bookings in the dance music industry. Based in Southeast Asia.",
         link: https://faagencyofficial.com/,
         image: ../images/works/faagency.png,
         screens: {
@@ -11,151 +11,177 @@ works: [
             mobile: ['../images/work_screens/FA Agency/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 lg:pl-3 lg:pr-0 md:pr-3,
-        lightModeClasses: from-gray-600 to-gray-700
+        lightModeClasses: from-gray-600 to-gray-700,
+        technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Parallax.JS'],
+        isMobile: false
     },
     {
         name: Aventis School of Management,
         image: ../images/works/aventis.png,
-        description: ,
+        description: "Aventis was established as a Business School catered for working executives in 2007 and in 2010, they were the the 1st batch of PEI to be registered under the 4 Year ERF Registration." ,
         link: ,
         screens: {
             web: ['../images/work_screens/Aventis/Web-1.png'],
             mobile: ['../images/work_screens/Aventis/Mobile-1.png']
         },
         gridClassNames: lg:col-span-3 lg:pr-3 md:pl-3 lg:pl-0,
-        lightModeClasses: from-blue-50  to-blue-100
+        lightModeClasses: from-blue-50  to-blue-100,
+        technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
+        isMobile: false
     },
     {
         name: MetroCentre Hotel,
         image: ../images/works/metro.png,
-        description: ,
-        link: ,
+        description: "Located in the central business district of Tagbilaran City, the MetroCentre is the place to be whether it's for business or for pleasure. Equipped with cozy and elegantly furnished guest rooms, the MetroCentre provides an oasis of comfort and relaxation, infused with a touch of Boholano charm and warm elegance. The hotel also features spacious function rooms and state-of-the-art facilities for meetings, conference, conventions and full banquets.",
+        link: https://www.metrocentrehotel.com/,
         screens: {
             web: ['../images/work_screens/MetroCentre/Web-1.png'],
             mobile: ['../images/work_screens/MetroCentre/Mobile-1.png']
         },
         gridClassNames: lg:col-span-5 lg:px-3 md:pr-3,
-        lightModeClasses: from-pink-50 to-yellow-50
+        lightModeClasses: from-pink-50 to-yellow-50,
+        technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
+        isMobile: false
     },
     {
         name: Bohol Quality Mall,
         image: ../images/works/bq.png,
-        description: ,
-        link: ,
+        description: "A story of dreams, hope, survival, and growth anchored on the strength and the heart of a family — that is the history and legacy of the Bohol Quality Corporation. As it celebrates its 74th year in the local business scene, it cannot be denied that BQ Corporation has already carved a name for itself, throughout  its lifetime, as one of Bohol’s most formidable forces in the various industries it chose to penetrate.",
+        link: https://boholquality.com/,
         screens: {
             web: ['../images/work_screens/BQ/Web-1.png'],
             mobile: ['../images/work_screens/BQ/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 md:pl-3,
-        lightModeClasses: from-purple-100 to-blue-100
+        lightModeClasses: from-purple-100 to-blue-100,
+        technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
+        isMobile: false
     },
     {
         name: EduLearn Core,
         image: ../images/works/core1.png,
-        description: ,
+        description: "CORE is a repository of educational resources and institution documents for CEAP member school teachers and administrators",
         link: ,
         screens: {
             web: ['../images/work_screens/Core v1/Web-1.png','../images/work_screens/Core v1/Web-2.png','../images/work_screens/Core v1/Web-3.png','../images/work_screens/Core v1/Web-4.png','../images/work_screens/Core v1/Web-5.png'],
             mobile: ['../images/work_screens/Core v1/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 md:pr-3,
-        lightModeClasses: from-gray-50 to-blue-50
+        lightModeClasses: from-gray-50 to-blue-50,
+        technologyUsed: ['React.JS', 'Swiper.JS', 'Bootstrap', 'Django', 'Python'],
+        isMobile: false
     },
     {
         name: Tourism Website,
         image: ../images/works/tour.png,
-        description: ,
+        description: "A simple tourism website template made with Bootstrap",
         link: ,
         screens: {
             web: ['../images/work_screens/Tourism/Web-1.png'],
             mobile: ['../images/work_screens/Tourism/Mobile-1.png']
         },
         gridClassNames: lg:col-span-5 lg:px-3 md:pl-3,
-        lightModeClasses: from-red-100 to-gray-100
+        lightModeClasses: from-red-100 to-gray-100,
+        technologyUsed: ['HTML', 'JavaScript', 'Bootstrap'],
+        isMobile: false
     },
     {
         name: Wedding Website,
         image: ../images/works/wedding.png,
-        description: ,
+        description: "A romantic wedding website",
         link: ,
         screens: {
             web: ['../images/work_screens/Wedding/Web-1.png'],
             mobile: ['../images/work_screens/Wedding/Mobile-1.png']
         },
         gridClassNames: lg:col-span-3 lg:pl-3 lg:pr-0 md:pr-3,
-        lightModeClasses: from-green-900 to-gray-700
+        lightModeClasses: from-green-900 to-gray-700,
+        technologyUsed: ['React.JS', 'Bootstrap'],
+        isMobile: false
     },
     {
         name: Debut Website,
         image: ../images/works/debut.png,
-        description: ,
+        description: "An unforgettable debut website",
         link: ,
         screens: {
             web: ['../images/work_screens/Debut/Web-1.png'],
             mobile: ['../images/work_screens/Debut/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 lg:pr-3 lg:pl-0 md:pl-3,
-        lightModeClasses: from-yellow-100 to-purple-200
+        lightModeClasses: from-yellow-100 to-purple-200,
+        technologyUsed: ['React.JS', 'Bootstrap'],
+        isMobile: false
     },
     {
-        name: CleanAirAttics,
+        name: CleanAirAttic,
         image: ../images/works/cleanairattics.png,
-        description: ,
+        description: "CLEAN AIR ATTIC will give you an honest assessment of your situation as well as a free quote. In addition to competitive pricing, you’ll be able to benefit from our extensive warranty where we stand behind the quality service we provide.",
         link: ,
         screens: {
             web: ['../images/work_screens/CleanAirAttics/Web-1.png'],
             mobile: ['../images/work_screens/CleanAirAttics/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 lg:px-3 md:pr-3,
-        lightModeClasses: from-green-100 to-yellow-50
+        lightModeClasses: from-green-100 to-yellow-50,
+        technologyUsed: ['HTML', 'Bootstrap', 'JavaScript'],
+        isMobile: false
     },
     {
         name: Portfolio Site,
         image: ../images/works/portfolio.png,
-        description: ,
+        description: "A simple portfolio site",
         link: ,
         screens: {
             web: ['../images/work_screens/Jean/Web-1.png'],
             mobile: ['../images/work_screens/Jean/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 md:pl-3,
-        lightModeClasses: from-gray-100 to-green-50 
+        lightModeClasses: from-gray-100 to-green-50,
+        technologyUsed: ['HTML', 'CSS', 'JavaScript', 'Lightbox'],
+        isMobile: false
     },
     {
         name: Edulearn Core v2,
         image: ../images/works/core2.png,
-        description: ,
+        description: "CORE is a repository of educational resources and institution documents for CEAP member school teachers and administrators",
         link: ,
         screens: {
             web: ['../images/work_screens/Core v2/Web-1.png'],
             mobile: ['../images/work_screens/Core v2/Mobile-1.png']
         },
         gridClassNames: lg:col-span-4 md:pr-3,
-        lightModeClasses: from-gray-50 to-blue-50
+        lightModeClasses: from-gray-50 to-blue-50,
+        technologyUsed: ['React.JS', 'ASP Core', 'TailwindCSS'],
+        isMobile: false
     },
     {
         name: Affiliate SAAS,
         image: ../images/works/affiliatesaas.png,
-        description: ,
+        description: "A branding site for an online product",
         link: ,
         screens: {
             web: ['../images/work_screens/AffiliateSAAS/Web-1.png'],
             mobile: ['../images/work_screens/AffiliateSAAS/Mobile-1.png']
         },
         gridClassNames: lg:col-span-3 lg:px-3 md:pl-3,
-        lightModeClasses: from-blue-100 to-yellow-100
+        lightModeClasses: from-blue-100 to-yellow-100,
+        technologyUsed: ['HTML', 'Bootstrap', 'JavaScript'],
+        isMobile: false
     },
     {
         name: Chasdeiamram,
         image: ../images/works/chasdei.png,
-        description: ,
-        link: ,
+        description: "Chasdei amram was establish about a month after corona came to Israel, on Pesach 5780. It began when the family of a patient reached out to Rabbi Markowitz, a medical askan. The patient had contracted coronavirus, and the family related that he was refusing to be taken to the hospital, and asked for help. Rabbi Markowitz quickly summoned a doctor and brought an oxygen concentrator to the patient's house, saving his life.",
+        link: https://chasdeiamram.org/,
         screens: {
             web: ['../images/work_screens/Chasdeiamram/Web-1.png'],
             mobile: ['../images/work_screens/Chasdeiamram/Mobile-1.png']
         },
         gridClassNames: lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0,
-        lightModeClasses: from-red-50 to-blue-50
+        lightModeClasses: from-red-50 to-blue-50,
+        technologyUsed: ['HTML', 'TailwindCSS', 'JavaScript'],
+        isMobile: false
     }
 ]
 ---

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Tween, Timeline } from 'react-gsap';
 import { Link } from 'react-scroll';
 import { StaticImage } from "gatsby-plugin-image";
@@ -11,8 +11,6 @@ import Glare from "../../tilt/Glare";
 
 export default function IntroSection(){
 
-    const [ loaded, setLoaded ] = useState(false);
-
     const copyToClipboard = (text, type) =>{
       navigator.clipboard.writeText(text);
       toast.info(`${type} copied!`);
@@ -20,12 +18,12 @@ export default function IntroSection(){
 
     useEffect(()=>{
       let isMounted = true;
-      if(isMounted) setLoaded(true);
+      if(isMounted) 
       return()=>isMounted = false;
     }, [])
 
     return (
-      <section  className={`${loaded ? '' : 'opacity-0'}`}>
+      <section>
         <div className="h-screen relative w-full xl:block flex items-center">
           <Timeline
             target={
