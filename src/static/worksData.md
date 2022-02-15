@@ -10,8 +10,8 @@ works: [
             web: ['../images/work_screens/FA Agency/Web-1.png', '../images/work_screens/FA Agency/Web-2.png'],
             mobile: ['../images/work_screens/FA Agency/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 lg:pl-3 lg:pr-0 md:pr-3,
-        lightModeClasses: from-gray-600 to-gray-700,
+        gridClassNames: "lg:col-span-4 lg:pl-3 lg:pr-0 md:pr-3",
+        lightModeClasses: "from-gray-600 to-gray-700",
         technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Parallax.JS'],
         isMobile: false
     },
