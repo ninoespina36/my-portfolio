@@ -58,7 +58,7 @@ works: [
             web: ['../images/work_screens/Core v1/Web-1.png','../images/work_screens/Core v1/Web-2.png','../images/work_screens/Core v1/Web-3.png','../images/work_screens/Core v1/Web-4.png','../images/work_screens/Core v1/Web-5.png'],
             mobile: ['../images/work_screens/Core v1/Mobile-1.png']
         },
-        technologyUsed: ['React.JS', 'Swiper.JS', 'Bootstrap', 'Django', 'Python'],
+        technologyUsed: ['React.JS','Redux' ,'Swiper.JS', 'Bootstrap', 'Django', 'Python'],
         isMobile: false
     },
     {
@@ -130,7 +130,7 @@ works: [
             web: ['../images/work_screens/Core v2/Web-1.png'],
             mobile: ['../images/work_screens/Core v2/Mobile-1.png']
         },
-        technologyUsed: ['React.JS', 'ASP Core', 'TailwindCSS'],
+        technologyUsed: ['React.JS','Redux', 'ASP Core', 'TailwindCSS'],
         isMobile: false
     },
     {
