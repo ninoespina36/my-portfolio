@@ -10,14 +10,15 @@ import _ from 'underscore';
 
 import FadeIn from "../animations/FadeIn";
 import Glare from '../tilt/Glare';
+import { gridClasses } from '../../static/gridClasses';
 
-const WorkColumn  = ({ gridClassNames, lightModeClasses, image_node, showModal }) =>{
+const WorkColumn  = ({ image_node, showModal, index }) =>{
   return (
-    <div className={`${gridClassNames} md:col-span-6 col-span-12 pb-6`}>
+    <div className={`${gridClasses[index].gridClassNames} md:col-span-6 col-span-12 pb-6`}>
       <FadeIn>
         <div onClick={showModal}>
           <Glare>
-            <div className={`${lightModeClasses} p-20 rounded-corner bg-gradient-to-br border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden`}>
+            <div className={`${gridClasses[index].lightModeClasses} p-20 rounded-corner bg-gradient-to-br border dark:from-gray-600 dark:to-gray-700 dark:border-gray-600 portfolio-box relative overflow-hidden`}>
               <div className="absolute bottom-0 right-0 w-full h-full p-10 flex items-center justify-center">
                 <GatsbyImage 
                   image={getImage(image_node)}
@@ -48,8 +49,6 @@ export default function PortfolioSection(){
                     gatsbyImageData
                   }
                 }
-                gridClassNames
-                lightModeClasses
                 name
                 description
                 link
@@ -248,6 +247,7 @@ export default function PortfolioSection(){
             {works.map((item, index)=>(
               <WorkColumn 
                 key={index}
+                index={index}
                 showModal={()=>showModal(item)}
                 {...item}
               />

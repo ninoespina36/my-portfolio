@@ -10,8 +10,6 @@ works: [
             web: ['../images/work_screens/FA Agency/Web-1.png', '../images/work_screens/FA Agency/Web-2.png'],
             mobile: ['../images/work_screens/FA Agency/Mobile-1.png']
         },
-        gridClassNames: "lg:col-span-4 lg:pl-3 lg:pr-0 md:pr-3",
-        lightModeClasses: "from-gray-600 to-gray-700",
         technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Parallax.JS'],
         isMobile: false
     },
@@ -24,8 +22,6 @@ works: [
             web: ['../images/work_screens/Aventis/Web-1.png'],
             mobile: ['../images/work_screens/Aventis/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-3 lg:pr-3 md:pl-3 lg:pl-0,
-        lightModeClasses: from-blue-50  to-blue-100,
         technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
         isMobile: false
     },
@@ -38,8 +34,6 @@ works: [
             web: ['../images/work_screens/MetroCentre/Web-1.png'],
             mobile: ['../images/work_screens/MetroCentre/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-5 lg:px-3 md:pr-3,
-        lightModeClasses: from-pink-50 to-yellow-50,
         technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
         isMobile: false
     },
@@ -52,8 +46,6 @@ works: [
             web: ['../images/work_screens/BQ/Web-1.png'],
             mobile: ['../images/work_screens/BQ/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 md:pl-3,
-        lightModeClasses: from-purple-100 to-blue-100,
         technologyUsed: ['WordPress', 'Bootstrap', 'PHP', 'Swiper.JS'],
         isMobile: false
     },
@@ -66,8 +58,6 @@ works: [
             web: ['../images/work_screens/Core v1/Web-1.png','../images/work_screens/Core v1/Web-2.png','../images/work_screens/Core v1/Web-3.png','../images/work_screens/Core v1/Web-4.png','../images/work_screens/Core v1/Web-5.png'],
             mobile: ['../images/work_screens/Core v1/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 md:pr-3,
-        lightModeClasses: from-gray-50 to-blue-50,
         technologyUsed: ['React.JS', 'Swiper.JS', 'Bootstrap', 'Django', 'Python'],
         isMobile: false
     },
@@ -80,8 +70,6 @@ works: [
             web: ['../images/work_screens/Tourism/Web-1.png'],
             mobile: ['../images/work_screens/Tourism/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-5 lg:px-3 md:pl-3,
-        lightModeClasses: from-red-100 to-gray-100,
         technologyUsed: ['HTML', 'JavaScript', 'Bootstrap'],
         isMobile: false
     },
@@ -94,8 +82,6 @@ works: [
             web: ['../images/work_screens/Wedding/Web-1.png'],
             mobile: ['../images/work_screens/Wedding/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-3 lg:pl-3 lg:pr-0 md:pr-3,
-        lightModeClasses: from-green-900 to-gray-700,
         technologyUsed: ['React.JS', 'Bootstrap'],
         isMobile: false
     },
@@ -108,8 +94,6 @@ works: [
             web: ['../images/work_screens/Debut/Web-1.png'],
             mobile: ['../images/work_screens/Debut/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 lg:pr-3 lg:pl-0 md:pl-3,
-        lightModeClasses: from-yellow-100 to-purple-200,
         technologyUsed: ['React.JS', 'Bootstrap'],
         isMobile: false
     },
@@ -122,8 +106,6 @@ works: [
             web: ['../images/work_screens/CleanAirAttics/Web-1.png'],
             mobile: ['../images/work_screens/CleanAirAttics/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 lg:px-3 md:pr-3,
-        lightModeClasses: from-green-100 to-yellow-50,
         technologyUsed: ['HTML', 'Bootstrap', 'JavaScript'],
         isMobile: false
     },
@@ -136,8 +118,6 @@ works: [
             web: ['../images/work_screens/Jean/Web-1.png'],
             mobile: ['../images/work_screens/Jean/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 md:pl-3,
-        lightModeClasses: from-gray-100 to-green-50,
         technologyUsed: ['HTML', 'CSS', 'JavaScript', 'Lightbox'],
         isMobile: false
     },
@@ -150,8 +130,6 @@ works: [
             web: ['../images/work_screens/Core v2/Web-1.png'],
             mobile: ['../images/work_screens/Core v2/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-4 md:pr-3,
-        lightModeClasses: from-gray-50 to-blue-50,
         technologyUsed: ['React.JS', 'ASP Core', 'TailwindCSS'],
         isMobile: false
     },
@@ -164,8 +142,6 @@ works: [
             web: ['../images/work_screens/AffiliateSAAS/Web-1.png'],
             mobile: ['../images/work_screens/AffiliateSAAS/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-3 lg:px-3 md:pl-3,
-        lightModeClasses: from-blue-100 to-yellow-100,
         technologyUsed: ['HTML', 'Bootstrap', 'JavaScript'],
         isMobile: false
     },
@@ -178,8 +154,6 @@ works: [
             web: ['../images/work_screens/Chasdeiamram/Web-1.png'],
             mobile: ['../images/work_screens/Chasdeiamram/Mobile-1.png']
         },
-        gridClassNames: lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0,
-        lightModeClasses: from-red-50 to-blue-50,
         technologyUsed: ['HTML', 'TailwindCSS', 'JavaScript'],
         isMobile: false
     }
