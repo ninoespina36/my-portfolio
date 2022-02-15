@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { ImMobile } from "react-icons/im";
 import { FiMonitor } from "react-icons/fi";
 import { BsInfoLg } from "react-icons/bs";
+import { AiOutlineLink, AiOutlineCloseCircle } from "react-icons/ai";
 import Modal from 'react-modal';
 import _ from 'underscore';
 
@@ -86,6 +87,19 @@ export default function PortfolioSection(){
   const showModal = (work) =>{
     setModalOpen(true);
     setActiveWork(work);
+  }
+
+  const closeModal = e =>{
+    e.preventDefault();
+    setModalOpen(false);
+    setTimeout(()=>{
+      onAfterClose();
+    }, 300)
+  }
+  
+  const workLink = e =>{
+    e.preventDefault();
+    window.open(activeWork?.link, '_blank');
   }
 
   const toggleScreen = e =>{
@@ -221,6 +235,20 @@ export default function PortfolioSection(){
                 <BsInfoLg size={25}/> 
               </button>
             )}
+            {!!activeWork?.link && (
+              <button 
+                onClick={workLink}
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+              >
+                <AiOutlineLink size={25}/> 
+            </button>
+            )}
+            <button 
+                onClick={closeModal}
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+              >
+                <AiOutlineCloseCircle size={25}/> 
+            </button>
           </div>
         </div>
       </Modal>
