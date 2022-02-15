@@ -4,7 +4,7 @@ module.exports = {
   ],
   important: true,
   purge: [
-    "./src/components/**/*.{js,jsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
     "./public/index.html",
   ],
   darkMode: "class",
