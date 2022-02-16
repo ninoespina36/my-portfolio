@@ -48,11 +48,15 @@ export const gridClasses = [
         lightModeClasses: 'from-blue-100 to-yellow-100'
     },
     {
-        gridClassNames: 'lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0',
+        gridClassNames: 'lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0 lg:pl-0 md:pl-3',
         lightModeClasses: 'from-red-50 to-blue-50'
     },
     {
-        gridClassNames: 'lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0',
-        lightModeClasses: 'from-red-50 to-blue-50'
-    }
+        gridClassNames: 'lg:col-span-5 md:pr-3 lg:pl-0 md:pl-3',
+        lightModeClasses: 'from-yellow-50 to-green-50'
+    },
+    {
+        gridClassNames: 'lg:col-span-4 md:px-3',
+        lightModeClasses: 'from-red-50 to-gray-10'
+    },
 ]

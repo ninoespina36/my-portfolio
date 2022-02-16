@@ -168,6 +168,18 @@ works: [
         },
         technologyUsed: ['HTML','SASS' ,'Bootstrap', 'React JS', 'Laravel'],
         isMobile: false
+    },
+    {
+        name: WhatzHot Web,
+        image: ../images/works/whatzhot-web.png,
+        description: "An E-commerce Landing Page",
+        link: https://whatzhot.app/,
+        screens: {
+            web: ['../images/work_screens/WhatzHot Web/Web-1.png'],
+            mobile: ['../images/work_screens/WhatzHot Web/Mobile-1.png']
+        },
+        technologyUsed: ['HTML','SASS' ,'TailwindCSS', 'Laravel', 'JavaScript'],
+        isMobile: false
     }
 ]
 ---
