@@ -50,5 +50,9 @@ export const gridClasses = [
     {
         gridClassNames: 'lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0',
         lightModeClasses: 'from-red-50 to-blue-50'
+    },
+    {
+        gridClassNames: 'lg:col-span-5 lg:pl-3 md:pr-3 lg:pr-0',
+        lightModeClasses: 'from-red-50 to-blue-50'
     }
 ]

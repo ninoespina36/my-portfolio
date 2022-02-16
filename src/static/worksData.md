@@ -156,6 +156,18 @@ works: [
         },
         technologyUsed: ['HTML', 'TailwindCSS', 'JavaScript'],
         isMobile: false
+    },
+    {
+        name: EMP Lending Corp,
+        image: ../images/works/emp.png,
+        description: "A lending system made with React JS",
+        link: https://branch1.emplendinginvestor.com/,
+        screens: {
+            web: ['../images/work_screens/EMP Lending/Web-1.png'],
+            mobile: ['../images/work_screens/EMP Lending/Mobile-1.png']
+        },
+        technologyUsed: ['HTML','SASS' ,'Bootstrap', 'React JS', 'Laravel'],
+        isMobile: false
     }
 ]
 ---
