@@ -127,7 +127,7 @@ works: [
         description: "CORE is a repository of educational resources and institution documents for CEAP member school teachers and administrators",
         link: ,
         screens: {
-            web: ['../images/work_screens/Core v2/Web-1.png'],
+            web: ['../images/work_screens/Core v2/Web-1.png','../images/work_screens/Core v2/Web-2.png','../images/work_screens/Core v2/Web-3.png','../images/work_screens/Core v2/Web-4.png','../images/work_screens/Core v2/Web-5.png','../images/work_screens/Core v2/Web-6.png'],
             mobile: ['../images/work_screens/Core v2/Mobile-1.png']
         },
         technologyUsed: ['React.JS','Redux', 'ASP Core', 'TailwindCSS'],
@@ -163,7 +163,7 @@ works: [
         description: "A lending system made with React JS",
         link: https://branch1.emplendinginvestor.com/,
         screens: {
-            web: ['../images/work_screens/EMP Lending/Web-1.png'],
+            web: ['../images/work_screens/EMP Lending/Web-1.png','../images/work_screens/EMP Lending/Web-2.png'],
             mobile: ['../images/work_screens/EMP Lending/Mobile-1.png']
         },
         technologyUsed: ['HTML','SASS' ,'Bootstrap', 'React JS', 'Laravel'],

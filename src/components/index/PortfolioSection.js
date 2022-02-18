@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, Fragment } from "react";
 import { StaticImage, GatsbyImage, getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
 import { useSelector } from "react-redux";
 import { ImMobile } from "react-icons/im";
-import { FiMonitor } from "react-icons/fi";
+import { FiMonitor, FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { BsInfoLg } from "react-icons/bs";
 import { AiOutlineLink, AiOutlineCloseCircle } from "react-icons/ai";
 import Modal from 'react-modal';
@@ -81,6 +81,7 @@ export default function PortfolioSection(){
   const [ works, setWorks ] = useState([]);
   const [ activeWork, setActiveWork ] = useState({});
   const { isDarkMode } = useSelector(state => state.util);
+  const [ currentScreenPage, setScreenPage ] = useState(0);
   const mobileScreen = useRef(null);
   const desktopScreen = useRef(null);
 
@@ -105,6 +106,7 @@ export default function PortfolioSection(){
   const toggleScreen = e =>{
     e.preventDefault();
     setMobile(!isMobile);
+    setScreenPage(0);
     setDescription(false);
   }
 
@@ -114,9 +116,22 @@ export default function PortfolioSection(){
     setDescription(!isDescription);
   }
 
+  const nextScreen = e =>{
+    e.preventDefault();
+    let isLastPage = activeWork?.screens?.web?.length === (currentScreenPage + 1);
+    setScreenPage(isLastPage ? 0 : currentScreenPage + 1);
+  }
+
+  const prevScreen = e =>{
+    e.preventDefault();
+    let isFirstPage = currentScreenPage === 0;
+    setScreenPage(isFirstPage ? activeWork?.screens?.web?.length - 1 : currentScreenPage - 1);
+  }
+
   const onAfterClose = () =>{
     setMobile(false);
     setDescription(false);
+    setScreenPage(0);
   }
 
   const customStyles = {
@@ -157,7 +172,7 @@ export default function PortfolioSection(){
       if(!!desktopScreen.current) desktopScreen.current.scrollTop = 0;
     }
     return ()=> isMounted = false;
-  }, [ isMobile ]);
+  }, [ isMobile, currentScreenPage  ]);
 
   return (
     <div className="min-h-screen xl:py-28 py-16 bg-white dark:bg-gray-700" id="portfolio">
@@ -169,13 +184,13 @@ export default function PortfolioSection(){
         style={customStyles}
         closeTimeoutMS={300}
       >
-        <div>
+        <div className="relative md:px-14">
           {(isMobile && !isDescription) ? (
             <div className="relative">
               <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll mobile_work__screen" ref={mobileScreen}>
                 {!_.isEmpty(activeWork) && (
                   <GatsbyImage 
-                    image={getImage(activeWork?.screens?.mobile[0])}
+                    image={getImage(activeWork?.screens?.mobile[currentScreenPage])}
                     alt="Screen" 
                     placeholder="blurred"
                     className="w-full block"
@@ -205,7 +220,7 @@ export default function PortfolioSection(){
               <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll web_work__screen" ref={desktopScreen}>
                 {!_.isEmpty(activeWork) && (
                   <GatsbyImage 
-                    image={getImage(activeWork?.screens?.web[0])}
+                    image={getImage(activeWork?.screens?.web[currentScreenPage])}
                     alt="Screen" 
                     placeholder="blurred"
                     className="w-full block"
@@ -223,14 +238,14 @@ export default function PortfolioSection(){
           <div className="flex items-center justify-center gap-x-5 mt-5">
             <button 
               onClick={toggleScreen}
-              className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+              className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex flex-shrink-0 items-center justify-center text-primary"
             >
               {isMobile ? <FiMonitor size={25}/> : <ImMobile size={25}/>}
             </button>
             {!isDescription && (
               <button 
                 onClick={toggleDescription}
-                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex flex-shrink-0 items-center justify-center text-primary"
               >
                 <BsInfoLg size={25}/> 
               </button>
@@ -238,19 +253,25 @@ export default function PortfolioSection(){
             {!!activeWork?.link && (
               <button 
                 onClick={workLink}
-                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex flex-shrink-0 items-center justify-center text-primary"
               >
                 <AiOutlineLink size={25}/> 
             </button>
             )}
             <button 
                 onClick={closeModal}
-                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex items-center justify-center text-primary"
+                className="w-14 h-14 bg-opacity-75 bg-white hover:bg-gray-200 transition-all duration-200 rounded-full flex flex-shrink-0 items-center justify-center text-primary"
               >
                 <AiOutlineCloseCircle size={25}/> 
             </button>
           </div>
         </div>
+        {(activeWork?.screens?.web?.length > 1 && !isMobile) && (
+          <Fragment>
+            <button className="text-sm absolute sm:top-1/2 top-1/4 -translate-y-1/2 md:left-10 left-3 md:w-14 md:h-14 w-8 h-8 flex transition-all duration-200 items-center justify-center bg-opacity-75 bg-white hover:bg-gray-200 rounded-full text-primary" onClick={prevScreen}><FiArrowLeft size={25}/></button>
+            <button className="text-sm absolute sm:top-1/2 top-1/4 -translate-y-1/2 md:right-10 right-3 md:w-14 md:h-14 w-8 h-8 flex transition-all duration-200 items-center justify-center bg-opacity-75 bg-white hover:bg-gray-200 rounded-full text-primary" onClick={nextScreen}><FiArrowRight size={25}/></button>
+          </Fragment>
+        )}
       </Modal>
 
       <div className="max-container  text-gray-800">
