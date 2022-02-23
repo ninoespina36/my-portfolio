@@ -192,6 +192,18 @@ works: [
         },
         technologyUsed: ['HTML','WordPress' ,'TailwindCSS', 'JavaScript', 'Elementor'],
         isMobile: false
+    },
+    {
+        name: GoTeam,
+        image: ../images/works/go.team.png,
+        description: "Australian entrepreneurs, Matt Kesby and her sister Fiona Kesby began offshoring tasks via Odesk (now Upwork) for their software business in 2008.",
+        link: https://go.team/,
+        screens: {
+            web: ['../images/work_screens/Goteam/Web-1.png','../images/work_screens/Goteam/Web-2.png'],
+            mobile: ['../images/work_screens/Goteam/Mobile-1.png']
+        },
+        technologyUsed: ['HTML','WordPress' ,'TailwindCSS', 'JavaScript', 'PHP'],
+        isMobile: false
     }
 ]
 ---
