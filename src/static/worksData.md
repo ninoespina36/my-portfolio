@@ -180,6 +180,18 @@ works: [
         },
         technologyUsed: ['HTML','SASS' ,'TailwindCSS', 'Laravel', 'JavaScript'],
         isMobile: false
+    },
+    {
+        name: Montessori Integrated School,
+        image: ../images/works/montessori_edu.png,
+        description: "Montessori Integrated School is a true Montessori school and one of the pioneers in Montessori Education in the Philippines.",
+        link: https://montessori.edu.ph/,
+        screens: {
+            web: ['../images/work_screens/Montessori/Web-1.png'],
+            mobile: ['../images/work_screens/Montessori/Mobile-1.png']
+        },
+        technologyUsed: ['HTML','WordPress' ,'TailwindCSS', 'JavaScript', 'Elementor'],
+        isMobile: false
     }
 ]
 ---

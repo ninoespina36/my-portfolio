@@ -3,7 +3,7 @@
   "private": true,
   "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Nino Espina",
   "dependencies": {
     "@emailjs/browser": "^3.4.0",
     "@reduxjs/toolkit": "^1.6.2",
