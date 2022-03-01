@@ -185,6 +185,21 @@ export default function PortfolioSection(){
         closeTimeoutMS={300}
       >
         <div className="relative md:px-14">
+          {isDarkMode ? (
+            <StaticImage 
+              src="../../images/arrow_twisted-dark.png" 
+              alt="Screen" 
+              placeholder="blurred"
+              className="w-10 absolute top-20 right-28 lg:block hidden"
+            />
+          ) : (
+            <StaticImage 
+              src="../../images/arrow_twisted.png" 
+              alt="Screen" 
+              placeholder="blurred"
+              className="w-10 absolute top-20 right-28 lg:block hidden"
+            />
+          )}  
           {(isMobile && !isDescription) ? (
             <div className="relative">
               <div className="absolute left-1/2 transform -translate-x-1/2 z-10 overflow-y-scroll mobile_work__screen" ref={mobileScreen}>
